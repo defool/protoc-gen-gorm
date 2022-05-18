@@ -1,0 +1,24 @@
+syntax = "proto3";
+package foo.v1;
+option go_package="foo/v1";
+
+import "gorm/v1/gorm.proto";
+
+message User {
+    uint64 id = 1;
+    string name = 2 [(gorm)="size:32"];
+    string user_email = 3;
+    uint64 company_id = 4;
+    Company company = 5;
+    repeated Group groups = 6;
+}
+
+message Company {
+    uint64 id = 1;
+    string name = 2;
+}
+
+message Group {
+    uint64 id = 1;
+    string name = 2;
+}

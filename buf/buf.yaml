@@ -1,0 +1,8 @@
+version: v1
+name: buf.build/defool/protoc-gen-gorm
+breaking:
+  use:
+    - FILE
+lint:
+  use:
+    - DEFAULT

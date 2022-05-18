@@ -1,0 +1,11 @@
+version: v1
+deps:
+  - buf.build/googleapis/googleapis
+  - buf.build/envoyproxy/protoc-gen-validate
+  - buf.build/defool/protoc-gen-gorm
+breaking:
+  use:
+    - FILE
+lint:
+  use:
+    - DEFAULT

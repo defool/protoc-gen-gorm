@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option go_package="github.com/defool/protoc-gen-gorm/buf/generated/gorm/v1";
+
+import "google/protobuf/descriptor.proto";
+
+extend google.protobuf.FieldOptions {
+    string gorm = 86123;
+}

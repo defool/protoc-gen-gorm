@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package foo.v1;
+option go_package="foo/v1";
+
+import "validate/validate.proto";
+import "foo/v1/db.proto";
+
+message SayHelloRequest {
+  string name = 1 [(validate.rules).string.prefix = "foo"];
+}
+
+message SayHelloResponse {
+  string reply = 1;
+  User user = 2;
+}
+
+service ExampleService {
+  rpc SayHello (SayHelloRequest) returns (SayHelloResponse);
+}
