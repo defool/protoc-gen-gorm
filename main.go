@@ -1,12 +1,13 @@
 package main
 
 import (
-	"fmt"
-	"io/ioutil"
-	"os"
+	pgs "github.com/lyft/protoc-gen-star"
+	pgsgo "github.com/lyft/protoc-gen-star/lang/go"
+)
 
-	"google.golang.org/protobuf/proto"
-	"google.golang.org/protobuf/types/pluginpb"
+var (
+	debugEnvName = "GORM_TAG_DEBUG"
+	enableLogger bool
 )
 
 func checkErr(err error) {
@@ -16,16 +17,11 @@ func checkErr(err error) {
 }
 
 func main() {
-	input, err := ioutil.ReadAll(os.Stdin)
-	checkErr(err)
-
-	var request pluginpb.CodeGeneratorRequest
-	err = proto.Unmarshal(input, &request)
-	checkErr(err)
-	response, err := generate(&request)
-	checkErr(err)
-
-	out, err := proto.Marshal(response)
-	checkErr(err)
-	fmt.Fprint(os.Stdout, string(out))
+	enableLogger = debugEnvName != ""
+	opt := pgs.DebugEnv(debugEnvName)
+	mod := newMod()
+	pgs.Init(opt).
+		RegisterModule(mod).
+		RegisterPostProcessor(pgsgo.GoFmt()).
+		Render()
 }

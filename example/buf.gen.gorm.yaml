@@ -1,0 +1,8 @@
+version: v1
+plugins:  
+  - name: gorm
+    out: .
+    opt:
+    - paths=source_relative
+    - outdir=./generated
+    - replace_keyword=true

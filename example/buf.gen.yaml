@@ -1,10 +1,5 @@
 version: v1
-
 plugins:
   - name: go
     out: generated
     opt: paths=source_relative
-  - name: gorm
-    out: generated
-    opt:
-      - paths=source_relative
