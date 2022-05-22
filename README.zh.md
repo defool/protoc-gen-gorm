@@ -6,8 +6,13 @@
 
 ## 原理
 
-在 `protoc-gen-go`插件生成代码后，再使用`github.com/lyft/protoc-gen-star`注入`gorm`的Tag。
+参考了[protoc-go-inject-tag](https://github.com/favadi/protoc-go-inject-tag)的实现，在 `protoc-gen-go`插件生成代码后，再使用`github.com/lyft/protoc-gen-star`注入`gorm`的Tag。
 
+## 安装
+
+```
+go install github.com/defool/protoc-gen-gorm
+```
 
 ## 示例
  

@@ -6,7 +6,13 @@
 
 ## How it works
 
-Inject tag by `github.com/lyft/protoc-gen-star(github.com/lyft/protoc-gen-star)` after plugin `[protoc-gen-go](https://golang/protobuf/protoc-gen-go)`.
+Inspired by [protoc-go-inject-tag](https://github.com/favadi/protoc-go-inject-tag), protoc-gen-gorm runs after the plugin `[protoc-gen-go](https://golang/protobuf/protoc-gen-go)` and injects `gorm` tag to protobuf message.
+
+## Install
+
+```
+go install github.com/defool/protoc-gen-gorm
+```
 
 ## Example
  
