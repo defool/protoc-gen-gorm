@@ -30,8 +30,8 @@ type User struct {
 	Name      string   `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty" gorm:"size:32;column:uname;"`
 	UserEmail string   `protobuf:"bytes,3,opt,name=user_email,json=userEmail,proto3" json:"user_email,omitempty" gorm:"size:32;column:user_email"`
 	CompanyId uint64   `protobuf:"varint,4,opt,name=company_id,json=companyId,proto3" json:"company_id,omitempty" gorm:"column:company_id"`
-	Company   *Company `protobuf:"bytes,5,opt,name=company,proto3" json:"company,omitempty" gorm:"column:company"`
-	Groups    []*Group `protobuf:"bytes,6,rep,name=groups,proto3" json:"groups,omitempty" gorm:"many2many:user_languages;column:groups"`
+	Company   *Company `protobuf:"bytes,5,opt,name=company,proto3" json:"company,omitempty" gorm:""`
+	Groups    []*Group `protobuf:"bytes,6,rep,name=groups,proto3" json:"groups,omitempty" gorm:"many2many:user_languages;"`
 }
 
 func (x *User) Reset() {

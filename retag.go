@@ -102,11 +102,17 @@ func (v tagVisitor) Visit(n ast.Node) ast.Visitor {
 		}
 		columnName := camelCaseToUnderscore(fieldName)
 		columnName = applyReplaceKeyword(v.typeName, columnName)
-		pbTag += "column:" + columnName
+		// only for none-pointer type
+		if !strings.HasPrefix(fmt.Sprint(f.Type), "&") {
+			pbTag += "column:" + columnName
+		}
 	}
 
 	// replace
-	oldTags.Set(&structtag.Tag{Key: "gorm", Name: pbTag})
+	if pbTag != "" {
+		oldTags.Set(&structtag.Tag{Key: "gorm", Name: pbTag})
+	}
+
 	f.Tag.Value = "`" + oldTags.String() + "`"
 	return nil
 }
