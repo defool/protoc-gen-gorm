@@ -6,11 +6,11 @@ import "gorm/v1/gorm.proto";
 
 message User {
     uint64 id = 1;
-    string name = 2 [(gorm)="size:32"];
-    string user_email = 3;
+    string name = 2 [(gorm)="size:32;column:uname;"];
+    string user_email = 3 [(gorm)="size:32;"];
     uint64 company_id = 4;
     Company company = 5;
-    repeated Group groups = 6;
+    repeated Group groups = 6 [(gorm)="many2many:user_languages;"]; 
 }
 
 message Company {
