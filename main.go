@@ -1,6 +1,8 @@
 package main
 
 import (
+	"os"
+
 	pgs "github.com/lyft/protoc-gen-star"
 	pgsgo "github.com/lyft/protoc-gen-star/lang/go"
 )
@@ -17,7 +19,7 @@ func checkErr(err error) {
 }
 
 func main() {
-	enableLogger = debugEnvName != ""
+	enableLogger = os.Getenv(debugEnvName) != ""
 	opt := pgs.DebugEnv(debugEnvName)
 	mod := newMod()
 	pgs.Init(opt).
