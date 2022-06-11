@@ -14,6 +14,7 @@ var (
 
 type option struct {
 	replaceKeyword bool
+	generateField  bool
 	outdir         string
 }
 
@@ -38,6 +39,10 @@ func applyOptions(optString string) {
 			case "replace_keyword":
 				if v == "true" || v == "1" {
 					opt.replaceKeyword = true
+				}
+			case "generate_field":
+				if v == "true" || v == "1" {
+					opt.generateField = true
 				}
 			default:
 			}

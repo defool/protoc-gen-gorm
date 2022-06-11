@@ -42,7 +42,9 @@ func (m mod) Execute(targets map[string]pgs.File, gpkgs map[string]pgs.Package) 
 			continue
 		}
 		m.retag(f)
-		m.genGorm(f)
+		if opt.generateField {
+			m.genGorm(f)
+		}
 	}
 
 	return m.Artifacts()

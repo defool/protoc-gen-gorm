@@ -6,3 +6,4 @@ plugins:
     - paths=source_relative
     - outdir=./generated
     - replace_keyword=true
+    - generate_field=true
