@@ -26,7 +26,7 @@ func camelCaseToUnderscore(str string) string {
 // underscoreToCamelCase copy from https://github.com/asaskevich/govalidator/blob/master/utils.go
 // Ex.: my_func => MyFunc
 func underscoreToCamelCase(s string) string {
-	return strings.Replace(strings.Title(strings.Replace(strings.ToLower(s), "_", " ", -1)), " ", "", -1)
+	return strings.Replace(strings.Title(strings.Replace(s, "_", " ", -1)), " ", "", -1)
 }
 
 func addSegment(inrune, segment []rune) []rune {

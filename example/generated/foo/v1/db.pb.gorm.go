@@ -6,9 +6,10 @@ package v1
 import "gorm.io/gorm"
 
 type xfieldsDb struct {
-	User    filedsOfUser
-	Company filedsOfCompany
-	Group   filedsOfGroup
+	User        filedsOfUser
+	Company     filedsOfCompany
+	UserCompany filedsOfUserCompany
+	Group       filedsOfGroup
 }
 
 type filedsOfUser struct {
@@ -21,6 +22,11 @@ type filedsOfUser struct {
 }
 
 type filedsOfCompany struct {
+	Id   string
+	Name string
+}
+
+type filedsOfUserCompany struct {
 	Id   string
 	Name string
 }
@@ -44,6 +50,10 @@ var (
 			Id:   "id",
 			Name: "company_name",
 		},
+		UserCompany: filedsOfUserCompany{
+			Id:   "id",
+			Name: "user_company_name",
+		},
 		Group: filedsOfGroup{
 			Id:   "id",
 			Name: "group_name",
@@ -56,6 +66,7 @@ func MigrateDb(db *gorm.DB) error {
 	return db.AutoMigrate(
 		&User{},
 		&Company{},
+		&UserCompany{},
 		&Group{},
 	)
 }

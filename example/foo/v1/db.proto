@@ -18,6 +18,11 @@ message Company {
     string name = 2;
 }
 
+message UserCompany {
+    uint64 id = 1;
+    string name = 2;
+}
+
 message Group {
     uint64 id = 1;
     string name = 2;
