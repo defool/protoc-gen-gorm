@@ -3,6 +3,8 @@
 
 package v1
 
+import "gorm.io/gorm"
+
 type xfieldsDb struct {
 	User    filedsOfUser
 	Company filedsOfCompany
@@ -48,3 +50,12 @@ var (
 		},
 	}
 )
+
+// MigrateDb auto migrate ddl to database
+func MigrateDb(db *gorm.DB) error {
+	return db.AutoMigrate(
+		&User{},
+		&Company{},
+		&Group{},
+	)
+}

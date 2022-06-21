@@ -42,9 +42,8 @@ func (m mod) Execute(targets map[string]pgs.File, gpkgs map[string]pgs.Package) 
 			continue
 		}
 		m.retag(f)
-		if opt.generateField {
-			m.genGorm(f)
-		}
+		m.genGorm(f)
+
 	}
 
 	return m.Artifacts()
@@ -61,9 +60,10 @@ func (m mod) genGorm(f pgs.File) {
 		name = name[:idx]
 	}
 	info := FileFieldInfo{
-		Name:    name,
-		Source:  sourceFile,
-		Package: pkgName,
+		Name:      name,
+		Source:    sourceFile,
+		Package:   pkgName,
+		GenFields: opt.generateField,
 	}
 	for _, msg := range f.AllMessages() {
 		typeName := underscoreToCamelCase(*msg.Descriptor().Name)

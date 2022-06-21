@@ -1,10 +1,11 @@
 package main
 
 type FileFieldInfo struct {
-	Source   string
-	Package  string
-	Name     string
-	Messages []MessageFieldInfo
+	Source    string
+	Package   string
+	Name      string
+	GenFields bool
+	Messages  []MessageFieldInfo
 }
 type MessageFieldInfo struct {
 	Name   string
@@ -22,6 +23,9 @@ var fieldTemplate = `
 
 package {{ .Package }}
 
+import "gorm.io/gorm"
+
+{{if .GenFields }}
 type xfields{{ .Name }} struct {
 	{{ range .Messages }} {{ .Name }} filedsOf{{ .Name }}  
 	{{ end }}
@@ -43,4 +47,13 @@ var (
 		{{ end }}
 	}
 )
+{{end}}
+
+// Migrate{{ .Name }} auto migrate ddl to database
+func Migrate{{ .Name }}(db *gorm.DB) error {
+	return db.AutoMigrate(
+		{{ range .Messages }}&{{ .Name }}{},
+		{{ end }}
+		)
+}
 `
