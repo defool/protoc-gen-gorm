@@ -96,7 +96,7 @@ func (v tagVisitor) Visit(n ast.Node) ast.Visitor {
 			}
 		}
 	}
-	if !hasColumn {
+	if !hasColumn && pbTag != "-" {
 		if pbTag != "" && !strings.HasSuffix(pbTag, ";") {
 			pbTag += ";"
 		}
